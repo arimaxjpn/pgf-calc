@@ -187,7 +187,7 @@
   .btn-corr { background: #444; color: #ccc; }
   .btn-corr-on  { background: #E65100; color: #fff; }
   .btn-corr-off { background: #555; color: #aaa; }
-  .corr-wrap { position: relative; }
+  .corr-wrap { position: relative; height: 50px; }
   .corr-wrap .btn { width: 100%; height: 100%; }
   .corr-inp {
     position: absolute;
@@ -223,7 +223,7 @@
   <div class="footer">
     <div class="corr-wrap">
       <button id="corr-btn" class="btn btn-corr" onclick="showCorrInput()">補正値</button>
-      <input type="number" id="val_corr" class="corr-inp" placeholder="" style="display:none"
+      <input type="text" inputmode="decimal" id="val_corr" class="corr-inp" placeholder="" style="display:none"
         oninput="onCorrInput()" onkeydown="chkEnt(event)">
       <button id="corr-action-btn" class="btn-corr-action btn-corr-on" style="display:none" onclick="toggleCorr()">ON</button>
     </div>
