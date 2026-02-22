@@ -717,6 +717,15 @@ function doFlip() {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     });
   }
+  // iOSバウンス防止
+  document.addEventListener('touchmove', (e) => {
+    let el = e.target;
+    while (el && el !== document.documentElement) {
+      if (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth) return;
+      el = el.parentElement;
+    }
+    e.preventDefault();
+  }, { passive: false });
 </script>
 </body>
 </html>
