@@ -163,7 +163,7 @@
   }
 
   /* --- Footer Buttons --- */
-  .footer { display: flex; gap: 8px; margin-top: 15px; height: 50px; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 15px; height: 50px; }
 
   /* --- Formula Display --- */
   .formula {
@@ -179,7 +179,7 @@
   }
   .formula span { color: #aaa; }
   .btn {
-    flex: 1; min-width: 0; border: none; border-radius: 8px;
+    border: none; border-radius: 8px;
     font-weight: bold; font-size: 14px; color: #fff; cursor: pointer;
   }
   .btn-reset { background: #444; color: #ccc; }
@@ -187,7 +187,7 @@
   .btn-corr { background: #444; color: #ccc; }
   .btn-corr-on  { background: #E65100; color: #fff; }
   .btn-corr-off { background: #555; color: #aaa; }
-  .corr-wrap { flex: 1; min-width: 0; position: relative; height: 50px; }
+  .corr-wrap { position: relative; }
   .corr-wrap .btn { width: 100%; height: 100%; }
   .corr-inp {
     position: absolute;
