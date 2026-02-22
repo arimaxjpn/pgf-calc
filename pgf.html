@@ -192,9 +192,14 @@
   .corr-inp {
     width: 100%; height: 50px; font-size: 16px !important; font-weight: bold;
     text-align: center; background: #333; color: #e0e0e0;
-    border: 1px solid #555; border-radius: 8px; border-right: none;
-    border-top-right-radius: 0; border-bottom-right-radius: 0;
-    padding-right: 0; -webkit-appearance: none; margin: 0;
+    border: 1px solid #555; border-radius: 8px;
+    padding: 0; -webkit-appearance: none; margin: 0;
+  }
+  .corr-inp.has-action {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 44px;
   }
   .corr-inp::placeholder { color: #777; font-weight: normal; }
   .corr-inp:focus { outline: none; }
@@ -669,12 +674,14 @@ function onCorrInput() {
     // 全削除 → ボタン状態に戻す
     corrOn = false;
     actionBtn.style.display = 'none';
+    inp.classList.remove('has-action');
     inp.style.display = 'none';
     document.getElementById('corr-btn').style.display = '';
     runCalc();
     return;
   }
   // 値あり → アクションボタン表示（現在のON/OFF状態を維持）
+  inp.classList.add('has-action');
   actionBtn.style.display = '';
   if (corrOn) {
     actionBtn.textContent = 'OFF';
