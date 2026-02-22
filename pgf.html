@@ -224,7 +224,7 @@
     <div class="corr-wrap">
       <button id="corr-btn" class="btn btn-corr" onclick="showCorrInput()">補正値</button>
       <input type="text" inputmode="decimal" id="val_corr" class="corr-inp" placeholder="" style="display:none"
-        oninput="onCorrInput()" onkeydown="chkEnt(event)">
+        oninput="onCorrInput()" onblur="onCorrBlur()" onkeydown="chkEnt(event)">
       <button id="corr-action-btn" class="btn-corr-action btn-corr-on" style="display:none" onclick="toggleCorr()">ON</button>
     </div>
     <button class="btn btn-reset" onclick="doReset()">読値リセット</button>
@@ -672,7 +672,7 @@ function showCorrInput() {
 function onCorrInput() {
   const inp = document.getElementById('val_corr');
   const actionBtn = document.getElementById('corr-action-btn');
-  if (inp.value === '') {
+  if (inp.value.trim() === '') {
     // 全削除 → ボタン状態に戻す
     corrOn = false;
     actionBtn.style.display = 'none';
@@ -682,7 +682,23 @@ function onCorrInput() {
     runCalc();
     return;
   }
-  // 値あり → アクションボタン表示（現在のON/OFF状態を維持）
+  // 値あり → アクションボタン表示
+  _showCorrAction();
+  runCalc();
+}
+
+function onCorrBlur() {
+  // oninput が発火しなかった場合のフォールバック
+  const inp = document.getElementById('val_corr');
+  if (inp.value.trim() !== '') {
+    _showCorrAction();
+    runCalc();
+  }
+}
+
+function _showCorrAction() {
+  const inp = document.getElementById('val_corr');
+  const actionBtn = document.getElementById('corr-action-btn');
   inp.classList.add('has-action');
   actionBtn.style.display = '';
   if (corrOn) {
@@ -692,7 +708,6 @@ function onCorrInput() {
     actionBtn.textContent = 'ON';
     actionBtn.className = 'btn-corr-action btn-corr-on';
   }
-  runCalc();
 }
 
 function toggleCorr() {
